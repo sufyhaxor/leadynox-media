@@ -131,8 +131,10 @@ body {
 }
 /* CUSTOM CURSOR */
 
-* {
-  cursor: none;
+@media (min-width: 1024px) {
+  * {
+    cursor: none;
+  }
 }
 
 .custom-cursor {
@@ -160,4 +162,33 @@ body {
   height: 60px;
   background: rgba(0, 200, 255, 0.15);
   border: 1px solid rgba(0, 200, 255, 0.35);
+}
+html {
+  scroll-behavior: smooth;
+}
+/* PREMIUM BUTTON GLOW */
+
+.premium-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.premium-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(0,200,255,0.35),
+    rgba(59,130,246,0.35)
+  );
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.premium-glow:hover::after {
+  opacity: 1;
 }

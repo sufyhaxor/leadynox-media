@@ -122,19 +122,19 @@ export default function HomePage() {
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-10 text-white/70">
 
-              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
                 Home
               </a>
 
-              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#services" className="hover:text-cyan-400 transition-all duration-300">
                 Services
               </a>
 
-              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#case-studies" className="hover:text-cyan-400 transition-all duration-300">
                 About
               </a>
 
-              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#contact" className="hover:text-cyan-400 transition-all duration-300">
                 Contact
               </a>
 
@@ -174,19 +174,19 @@ export default function HomePage() {
 
               <div className="flex flex-col gap-6 text-white/80">
 
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
                   Home
                 </a>
 
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                <a href="#services" className="hover:text-cyan-400 transition-all duration-300">
                   Services
                 </a>
 
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                <a href="#case-studies" className="hover:text-cyan-400 transition-all duration-300">
                   About
                 </a>
 
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                <a href="#contact" className="hover:text-cyan-400 transition-all duration-300">
                   Contact
                 </a>
 
@@ -200,7 +200,10 @@ export default function HomePage() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center px-6 pt-44">
+      <section
+  id="home"
+  className="relative min-h-screen flex items-center px-6 pt-44"
+>
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
 
@@ -245,7 +248,7 @@ export default function HomePage() {
 
             <div className="flex flex-wrap gap-5">
 
-              <button className="magnetic-button bg-gradient-to-r ... from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+              <button className="magnetic-button bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
                 Get Started
 
@@ -253,7 +256,7 @@ export default function HomePage() {
 
               </button>
 
-              <button className="magnetic-button border border-white/10 ...">
+              <button className="magnetic-button border border-white/10 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
 
                 Explore Services
 
@@ -334,7 +337,10 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-32 px-6 border-t border-white/5">
+      <section
+  id="services"
+  className="py-32 px-6 border-t border-white/5"
+>
 
         <div className="max-w-7xl mx-auto">
 
@@ -408,7 +414,10 @@ export default function HomePage() {
       </section>
 {/* STATS SECTION */}
 
-<section className="py-32 px-6 border-t border-white/5">
+<section
+  id="stats"
+  className="py-32 px-6 border-t border-white/5"
+>
 
   <div className="max-w-7xl mx-auto">
 
@@ -461,10 +470,78 @@ export default function HomePage() {
   </div>
 
 </section>
+{/* TRUST SECTION */}
 
+<section className="py-20 px-6 border-t border-white/5 overflow-hidden">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-center mb-14">
+
+      <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 rounded-full px-5 py-3 text-sm mb-6">
+
+        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+
+        Trusted Growth Systems
+
+      </div>
+
+      <h2 className="text-4xl md:text-6xl font-bold mb-6">
+
+        Built For
+        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          {" "}Scalable Growth
+        </span>
+
+      </h2>
+
+      <p className="text-white/60 text-lg max-w-3xl mx-auto leading-relaxed">
+
+        Performance-driven systems focused on measurable growth,
+        lead generation, media buying, and scalable traffic acquisition.
+
+      </p>
+
+    </div>
+
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+      {[
+        "Performance Marketing",
+        "Lead Generation",
+        "Media Buying",
+        "Traffic Scaling",
+      ].map((item, index) => (
+
+        <motion.div
+          key={index}
+          whileHover={{ y: -6 }}
+          className="bg-white/5 border border-white/10 rounded-[24px] p-8 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/[0.08] transition-all duration-500"
+        >
+
+          <div className="text-cyan-400 text-lg font-semibold mb-3">
+            0{index + 1}
+          </div>
+
+          <div className="text-xl font-semibold leading-snug">
+            {item}
+          </div>
+
+        </motion.div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
 {/* CASE STUDIES */}
 
-<section className="py-32 px-6 border-t border-white/5 overflow-hidden relative">
+<section
+  id="case-studies"
+  className="py-32 px-6 border-t border-white/5 overflow-hidden relative"
+>
 
   <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full"></div>
 
@@ -587,7 +664,10 @@ export default function HomePage() {
 
 {/* CTA SECTION */}
 
-<section className="py-32 px-6 border-t border-white/5">
+<section
+  id="contact"
+  className="py-32 px-6 border-t border-white/5"
+>
 
   <div className="max-w-5xl mx-auto text-center">
 
@@ -627,381 +707,164 @@ export default function HomePage() {
 
 </section>
       {/* FOOTER */}
-      <footer className="border-t border-white/5 py-20 px-6">
 
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
+<footer className="relative border-t border-white/10 px-6 py-20 overflow-hidden">
+
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#0ea5e910,transparent_60%)]"></div>
+
+  <div className="max-w-7xl mx-auto relative z-10">
+
+    <div className="grid lg:grid-cols-4 gap-16">
+
+      {/* BRAND */}
+
+      <div>
+
+        <div className="text-3xl font-bold tracking-tight mb-6">
+          Leady<span className="text-cyan-400">nox</span>
+        </div>
+
+        <p className="text-white/50 leading-relaxed mb-8">
+          Performance-focused digital systems designed to help modern brands
+          scale through measurable growth.
+        </p>
+
+        <div className="flex gap-4">
+
+          <a
+            href="#"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            <div className="text-sm font-bold">
+              IG
+            </div>
+          </a>
+
+          <a
+            href="#"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            in
+          </a>
+
+          <a
+            href="mailto:info@leadynoxmedia.com"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+          >
+            <Mail size={18} />
+          </a>
+
+        </div>
+
+      </div>
+
+      {/* NAVIGATION */}
+
+      <div>
+
+        <h4 className="text-lg font-semibold mb-6">
+          Navigation
+        </h4>
+
+        <div className="flex flex-col gap-4 text-white/50">
+
+          <a
+            href="#home"
+            className="hover:text-cyan-400 transition-all duration-300"
+          >
+            Home
+          </a>
+
+          <a
+            href="#services"
+            className="hover:text-cyan-400 transition-all duration-300"
+          >
+            Services
+          </a>
+
+          <a
+            href="#case-studies"
+            className="hover:text-cyan-400 transition-all duration-300"
+          >
+            About
+          </a>
+
+          <a
+            href="#contact"
+            className="hover:text-cyan-400 transition-all duration-300"
+          >
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+
+      {/* SERVICES */}
+
+      <div>
+
+        <h4 className="text-lg font-semibold mb-6">
+          Services
+        </h4>
+
+        <div className="flex flex-col gap-4 text-white/50">
+
+          <div>Performance Marketing</div>
+          <div>Lead Generation</div>
+          <div>Media Buying</div>
+          <div>Traffic Optimization</div>
+
+        </div>
+
+      </div>
+
+      {/* CONTACT */}
+
+      <div>
+
+        <h4 className="text-lg font-semibold mb-6">
+          Contact
+        </h4>
+
+        <div className="flex flex-col gap-5 text-white/50">
 
           <div>
-
-            <h3 className="text-3xl font-bold mb-4">
-              Leadynox Media
-            </h3>
-
-            <div className="space-y-3 text-white/60">
-
-              <div className="flex items-center gap-3">
-                <Mail size={18} />
-                info@leadynoxmedia.com
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Mail size={18} />
-                mohdsufiyan@leadynoxmedia.com
-              </div>
-
-            </div>
-
+            info@leadynoxmedia.com
           </div>
 
-          <p className="text-white/40 text-center lg:text-right">
-            © 2026 Leadynox Media. All rights reserved.
-          </p>
-
-        </div>
-
-      </footer>
-
-          {/* CONTACT CTA SECTION */}
-
-      <section className="relative py-32 px-6 overflow-hidden">
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#06b6d420,transparent_60%)]"></div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-
-          <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="rounded-[40px] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 backdrop-blur-2xl p-14 text-center"
-          >
-
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white/70 mb-8">
-              <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-              Let’s Build Something Massive
-            </div>
-
-            <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-              Ready To Scale
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Your Brand?
-              </span>
-            </h2>
-
-            <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed mb-12">
-              Leadynox Media helps brands grow through scalable performance marketing,
-              lead generation systems, media buying, and conversion-focused execution.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(0,170,255,0.35)]">
-                Book Strategy Call
-              </button>
-
-              <button className="border border-white/10 bg-white/5 backdrop-blur-xl px-10 py-5 rounded-full font-semibold text-lg hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
-                Explore Services
-              </button>
-
-            </div>
-
-          </motion.div>
-
-        </div>
-
-      </section>
-
-
-
-
-
-      {/* FOOTER */}
-
-      <footer className="relative border-t border-white/10 px-6 py-20 overflow-hidden">
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#0ea5e910,transparent_60%)]"></div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-
-          <div className="grid lg:grid-cols-4 gap-16">
-
-            {/* BRAND */}
-
-            <div>
-
-              <div className="text-3xl font-bold tracking-tight mb-6">
-                Leady<span className="text-cyan-400">nox</span>
-              </div>
-
-              <p className="text-white/50 leading-relaxed mb-8">
-                Performance-focused digital systems designed to help modern brands
-                scale through measurable growth.
-              </p>
-
-              <div className="flex gap-4">
-
-               <a
-  href="#"
-  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
->
-  <div className="text-sm font-bold">
-    IG
-  </div>
-</a>
-
-                <a
-                  href="#"
-                  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
-                >
-                  in
-                </a>
-
-                <a
-                  href="mailto:info@leadynoxmedia.com"
-                  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
-                >
-                  <Mail size={18} />
-                </a>
-
-              </div>
-
-            </div>
-
-
-
-            {/* LINKS */}
-
-            <div>
-
-              <h4 className="text-lg font-semibold mb-6">
-                Navigation
-              </h4>
-
-              <div className="flex flex-col gap-4 text-white/50">
-
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
-                  Home
-                </a>
-
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
-                  Services
-                </a>
-
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
-                  About
-                </a>
-
-                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
-                  Contact
-                </a>
-
-              </div>
-
-            </div>
-
-
-
-            {/* SERVICES */}
-
-            <div>
-
-              <h4 className="text-lg font-semibold mb-6">
-                Services
-              </h4>
-
-              <div className="flex flex-col gap-4 text-white/50">
-
-                <div>Performance Marketing</div>
-                <div>Lead Generation</div>
-                <div>Media Buying</div>
-                <div>Traffic Optimization</div>
-
-              </div>
-
-            </div>
-
-
-
-            {/* CONTACT */}
-
-            <div>
-
-              <h4 className="text-lg font-semibold mb-6">
-                Contact
-              </h4>
-
-              <div className="flex flex-col gap-5 text-white/50">
-
-                <div>
-                  info@leadynoxmedia.com
-                </div>
-
-                <div>
-                  mohdsufiyan@leadynoxmedia.com
-                </div>
-
-                <div>
-                  Kanpur, Uttar Pradesh — India
-                </div>
-
-              </div>
-
-            </div>
-
+          <div>
+            mohdsufiyan@leadynoxmedia.com
           </div>
 
-
-
-          <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-
-            <div className="text-white/40 text-sm">
-              © 2026 Leadynox Media. All rights reserved.
-            </div>
-
-            <div className="text-white/40 text-sm">
-              Built For Scalable Digital Growth
-            </div>
-
+          <div>
+            Kanpur, Uttar Pradesh — India
           </div>
 
         </div>
 
-            </footer>
-{/* CLIENT LOGOS */}
-
-<section className="py-16 border-y border-white/5 overflow-hidden">
-
-  <div className="max-w-7xl mx-auto px-6">
-
-    <div className="text-center mb-10">
-
-      <p className="text-white/40 uppercase tracking-[0.3em] text-sm">
-        Trusted Growth Systems
-      </p>
+      </div>
 
     </div>
 
-    <div className="relative overflow-hidden">
+    <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
 
-      <motion.div
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="flex gap-16 whitespace-nowrap"
-      >
+      <div className="text-white/40 text-sm">
+        © 2026 Leadynox Media. All rights reserved.
+      </div>
 
-        {[
-          "Meta Ads",
-          "Google Ads",
-          "TikTok Growth",
-          "Lead Funnels",
-          "Performance Media",
-          "Conversion Systems",
-          "Email Scaling",
-          "Traffic Optimization",
-          "Meta Ads",
-          "Google Ads",
-          "TikTok Growth",
-          "Lead Funnels",
-        ].map((item, index) => (
-
-          <div
-            key={index}
-            className="text-white/20 text-2xl font-semibold tracking-wide hover:text-cyan-400 transition-all duration-300"
-          >
-            {item}
-          </div>
-
-        ))}
-
-      </motion.div>
-
-    </div>
-
-  </div>
-{/* CASE STUDIES */}
-
-<section className="py-32 px-6">
-
-  <div className="max-w-7xl mx-auto">
-
-    <div className="text-center mb-20">
-
-      <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
-        Case Studies
-      </p>
-
-      <h2 className="text-5xl md:text-6xl font-bold mb-6">
-        Real Growth. <span className="text-cyan-400">Measured Results.</span>
-      </h2>
-
-      <p className="text-white/50 max-w-2xl mx-auto text-lg">
-        Performance-focused campaigns engineered for scalable digital growth.
-      </p>
-
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-8">
-
-      {[
-        {
-          title: "Lead Generation System",
-          result: "+312%",
-          desc: "Built scalable acquisition funnels optimized for conversion quality and lower CPL.",
-        },
-        {
-          title: "Performance Media Buying",
-          result: "12K+",
-          desc: "Generated high-intent leads through multi-platform paid traffic systems.",
-        },
-        {
-          title: "Conversion Optimization",
-          result: "98%",
-          desc: "Improved retention, engagement, and customer acquisition efficiency.",
-        },
-      ].map((item, index) => (
-
-        <motion.div
-          key={index}
-          whileHover={{ y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="relative overflow-hidden rounded-[35px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-cyan-500/[0.05] p-10 backdrop-blur-xl"
-        >
-
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,255,255,0.12),transparent_60%)]" />
-
-          <div className="relative z-10">
-
-            <div className="text-cyan-400 text-5xl font-bold mb-6">
-              {item.result}
-            </div>
-
-            <h3 className="text-2xl font-semibold mb-4">
-              {item.title}
-            </h3>
-
-            <p className="text-white/50 leading-relaxed">
-              {item.desc}
-            </p>
-
-          </div>
-
-        </motion.div>
-
-      ))}
+      <div className="text-white/40 text-sm">
+        Built For Scalable Digital Growth
+      </div>
 
     </div>
 
   </div>
 
-</section>
-</section>
-    </main>
+</footer>
+      
+
+              </main>
 
   </>
 
