@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react"; 
-
+import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -168,17 +168,24 @@ useEffect(() => {
       : "-translate-y-full opacity-0"
   }`}
 >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto relative pl-20 md:pl-24">
+          {/* FLOATING LOGO */}
+<div className="absolute -left-2 md:-left-10 top-1/2 -translate-y-1/2 z-[60]">
+  <Image
+  src="/logo.png"
+  alt="Leadynox Media"
+  width={180}
+  height={60}
+  priority
+  className="w-[180px] md:w-[170px] h-auto object-contain"
+/>
+</div>
 
-          <div className="border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full px-8 py-5 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
-
+          <div className="border border-white/10 bg-transparent backdrop-blur-2xl rounded-full px-5 py-2 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
             {/* LOGO */}
-            <div className="text-2xl font-bold">
-              Leady<span className="text-cyan-400">nox</span>
-            </div>
-
+          
             {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center gap-10 text-white/70">
+            <nav className="hidden lg:flex items-center gap-10 text-white/70 ml-28">
 
               <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
                 Home
@@ -280,7 +287,7 @@ useEffect(() => {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
       <section
   id="home"
-  className="relative min-h-screen flex items-center px-6 pt-52"
+ className="relative min-h-screen flex items-center px-6 pt-44"
 >
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
@@ -324,7 +331,7 @@ useEffect(() => {
 
             </p>
 
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap gap-5 mb-10">
 
               <button
   onMouseEnter={() => setHovered(true)}
@@ -585,7 +592,7 @@ useEffect(() => {
 
     </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div className="flex flex-col sm:flex-row gap-6 -mt-2">
 
       {[
         "Performance Marketing",
@@ -801,9 +808,16 @@ useEffect(() => {
 
       <div>
 
-        <div className="text-3xl font-bold tracking-tight mb-6">
-          Leady<span className="text-cyan-400">nox</span>
-        </div>
+       <div className="mb-6">
+  <Image
+    src="/logo.png"
+    alt="Leadynox Media"
+    width={200}
+    height={110}
+    priority
+    className="w-[170px] md:w-[240px] h-auto object-contain"
+  />
+</div>
 
         <p className="text-white/50 leading-relaxed mb-8">
           Performance-focused digital systems designed to help modern brands

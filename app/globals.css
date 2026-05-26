@@ -131,12 +131,6 @@ body {
 }
 /* CUSTOM CURSOR */
 
-@media (min-width: 1024px) {
-  * {
-    cursor: none;
-  }
-}
-
 .custom-cursor {
   width: 18px;
   height: 18px;
