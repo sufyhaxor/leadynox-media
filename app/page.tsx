@@ -869,7 +869,138 @@ export default function HomePage() {
         </div>
 
             </footer>
+{/* CLIENT LOGOS */}
 
+<section className="py-16 border-y border-white/5 overflow-hidden">
+
+  <div className="max-w-7xl mx-auto px-6">
+
+    <div className="text-center mb-10">
+
+      <p className="text-white/40 uppercase tracking-[0.3em] text-sm">
+        Trusted Growth Systems
+      </p>
+
+    </div>
+
+    <div className="relative overflow-hidden">
+
+      <motion.div
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="flex gap-16 whitespace-nowrap"
+      >
+
+        {[
+          "Meta Ads",
+          "Google Ads",
+          "TikTok Growth",
+          "Lead Funnels",
+          "Performance Media",
+          "Conversion Systems",
+          "Email Scaling",
+          "Traffic Optimization",
+          "Meta Ads",
+          "Google Ads",
+          "TikTok Growth",
+          "Lead Funnels",
+        ].map((item, index) => (
+
+          <div
+            key={index}
+            className="text-white/20 text-2xl font-semibold tracking-wide hover:text-cyan-400 transition-all duration-300"
+          >
+            {item}
+          </div>
+
+        ))}
+
+      </motion.div>
+
+    </div>
+
+  </div>
+{/* CASE STUDIES */}
+
+<section className="py-32 px-6">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-center mb-20">
+
+      <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
+        Case Studies
+      </p>
+
+      <h2 className="text-5xl md:text-6xl font-bold mb-6">
+        Real Growth. <span className="text-cyan-400">Measured Results.</span>
+      </h2>
+
+      <p className="text-white/50 max-w-2xl mx-auto text-lg">
+        Performance-focused campaigns engineered for scalable digital growth.
+      </p>
+
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-8">
+
+      {[
+        {
+          title: "Lead Generation System",
+          result: "+312%",
+          desc: "Built scalable acquisition funnels optimized for conversion quality and lower CPL.",
+        },
+        {
+          title: "Performance Media Buying",
+          result: "12K+",
+          desc: "Generated high-intent leads through multi-platform paid traffic systems.",
+        },
+        {
+          title: "Conversion Optimization",
+          result: "98%",
+          desc: "Improved retention, engagement, and customer acquisition efficiency.",
+        },
+      ].map((item, index) => (
+
+        <motion.div
+          key={index}
+          whileHover={{ y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="relative overflow-hidden rounded-[35px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-cyan-500/[0.05] p-10 backdrop-blur-xl"
+        >
+
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,255,255,0.12),transparent_60%)]" />
+
+          <div className="relative z-10">
+
+            <div className="text-cyan-400 text-5xl font-bold mb-6">
+              {item.result}
+            </div>
+
+            <h3 className="text-2xl font-semibold mb-4">
+              {item.title}
+            </h3>
+
+            <p className="text-white/50 leading-relaxed">
+              {item.desc}
+            </p>
+
+          </div>
+
+        </motion.div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+</section>
     </main>
 
   </>
