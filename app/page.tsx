@@ -170,21 +170,21 @@ useEffect(() => {
 >
         <div className="max-w-7xl mx-auto">
 
-          <div className="border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full px-5 py-2 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
+          <div className="relative border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full h-[72px] px-5 md:px-7 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
             {/* LOGO */}
-            <div className="flex items-center shrink-0">
+            <div className="flex items-center justify-start min-w-[95px] md:min-w-[125px] h-full -mt-[1px]">
   <Image
-    src="/logo.png"
-    alt="Leadynox Media"
-    width={180}
-    height={50}
-    priority
-    className="w-[70px] md:w-[95px] h-auto object-contain"
-  />
+  src="/logo.png"
+  alt="Leadynox Media"
+  width={220}
+  height={70}
+  priority
+  className="w-[88px] md:w-[108px] lg:w-[118px] h-auto object-contain select-none"
+ />
 </div>
 
             {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center gap-10 text-white/70">
+            <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 xl:gap-10 text-white/70">
 
               <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
                 Home
@@ -286,14 +286,14 @@ useEffect(() => {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
       <section
   id="home"
-  className="relative min-h-screen flex items-center px-6 pt-52"
+  className="relative min-h-screen flex items-center px-6 pt-40 md:pt-52"
 >
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#2563eb20,transparent_35%)]"></div>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
         
           {/* LEFT */}
           <motion.div
@@ -310,7 +310,7 @@ useEffect(() => {
 
             </div>
 
-            <h1 className="max-w-4xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+            <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
 
               Scaling Brands Through{" "}
 
@@ -367,7 +367,7 @@ useEffect(() => {
 
               <div className="absolute w-[380px] h-[380px] border border-blue-500/20 rounded-full animate-spin-reverse"></div>
 
-              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-6 md:p-10 w-[360px] shadow-[0_0_80px_rgba(14,165,255,0.15)]">
+              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-6 md:p-10 w-full max-w-[360px] shadow-[0_0_80px_rgba(14,165,255,0.15)]">
 
                 <div className="flex items-center justify-between mb-10">
 
