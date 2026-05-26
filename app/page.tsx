@@ -1,65 +1,618 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+
+import {
+  ArrowRight,
+  TrendingUp,
+  BarChart3,
+  Globe,
+  Megaphone,
+  ArrowUpRight,
+  Mail,
+  Menu,
+  X,
+} from "lucide-react";
+
+export default function HomePage() {
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothMouseX = useSpring(mouseX, {
+    stiffness: 120,
+    damping: 20,
+  });
+
+  const smoothMouseY = useSpring(mouseY, {
+    stiffness: 120,
+    damping: 20,
+  });
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
+    mouseX.set(e.clientX - 200);
+    mouseY.set(e.clientY - 200);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main
+      onMouseMove={handleMouseMove}
+      className="bg-black text-white overflow-hidden relative"
+    >
+      {/* NOISE */}
+      <div className="noise"></div>
+
+      {/* MOUSE GLOW */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[120px] z-0"
+        style={{
+          x: smoothMouseX,
+          y: smoothMouseY,
+        }}
+      />
+
+      {/* NAVBAR */}
+      <header className="fixed top-0 left-0 w-full z-50 px-6 py-6">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="border border-white/10 bg-black/40 backdrop-blur-2xl rounded-full px-8 py-5 flex items-center justify-between shadow-[0_0_40px_rgba(0,170,255,0.08)]">
+
+            {/* LOGO */}
+            <div className="text-2xl font-bold">
+              Leady<span className="text-cyan-400">nox</span>
+            </div>
+
+            {/* DESKTOP NAV */}
+            <nav className="hidden lg:flex items-center gap-10 text-white/70">
+
+              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                Home
+              </a>
+
+              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                Services
+              </a>
+
+              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                About
+              </a>
+
+              <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                Contact
+              </a>
+
+            </nav>
+
+            {/* RIGHT */}
+            <div className="flex items-center gap-4">
+
+              <button className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+
+                Let’s Talk
+
+              </button>
+
+              {/* MOBILE MENU BUTTON */}
+              <button
+                onClick={() => setMobileMenu(!mobileMenu)}
+                className="lg:hidden w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center"
+              >
+
+                {mobileMenu ? <X size={22} /> : <Menu size={22} />}
+
+              </button>
+
+            </div>
+
+          </div>
+
+          {/* MOBILE MENU */}
+          {mobileMenu && (
+
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="lg:hidden mt-4 border border-white/10 bg-black/70 backdrop-blur-2xl rounded-[30px] p-6"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+              <div className="flex flex-col gap-6 text-white/80">
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Home
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Services
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  About
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Contact
+                </a>
+
+              </div>
+
+            </motion.div>
+
+          )}
+
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center px-6 pt-44">
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#2563eb20,transparent_35%)]"></div>
+
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+
+          {/* LEFT */}
+          <motion.div
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+
+            <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 backdrop-blur-xl rounded-full px-5 py-3 text-sm mb-8">
+
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+
+              Performance Marketing Agency
+
+            </div>
+
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+
+              Scaling Brands Through{" "}
+
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+
+                Digital Growth
+
+              </span>
+
+            </h1>
+
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
+
+              Leadynox Media helps businesses generate scalable traffic,
+              quality leads, and measurable digital growth through
+              performance-focused marketing systems.
+
+            </p>
+
+            <div className="flex flex-wrap gap-5">
+
+              <button className="group bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+
+                Get Started
+
+                <ArrowRight className="group-hover:translate-x-1 transition-all duration-300" />
+
+              </button>
+
+              <button className="border border-white/10 bg-white/5 backdrop-blur-xl px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-white/10 transition-all duration-300">
+
+                Explore Services
+
+              </button>
+
+            </div>
+
+          </motion.div>
+
+          {/* RIGHT */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="relative float-animation"
+          >
+
+            <div className="relative w-full h-[620px] flex items-center justify-center">
+
+              <div className="absolute w-[520px] h-[520px] border border-cyan-500/20 rounded-full animate-spin-slow"></div>
+
+              <div className="absolute w-[380px] h-[380px] border border-blue-500/20 rounded-full animate-spin-reverse"></div>
+
+              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-6 md:p-10 w-[360px] shadow-[0_0_80px_rgba(14,165,255,0.15)]">
+
+                <div className="flex items-center justify-between mb-10">
+
+                  <div>
+
+                    <h3 className="text-3xl font-bold">
+                      Leadynox Media
+                    </h3>
+
+                    <p className="text-white/50 mt-2">
+                      Performance Dashboard
+                    </p>
+
+                  </div>
+
+                  <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-600"></div>
+
+                </div>
+
+                <div className="space-y-6">
+
+                  <div className="bg-black/40 border border-white/5 rounded-3xl p-6">
+
+                    <div className="flex items-center justify-between mb-4">
+
+                      <span className="text-white/60">
+                        Growth Performance
+                      </span>
+
+                      <span className="text-cyan-400">
+                        +245%
+                      </span>
+
+                    </div>
+
+                    <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+
+                      <div className="h-full w-[85%] bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full"></div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </motion.div>
+
+        </div>
+
+      </section>
+
+      {/* SERVICES */}
+      <section className="py-32 px-6 border-t border-white/5">
+
+        <div className="max-w-7xl mx-auto">
+
+          <div className="text-center mb-20">
+
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
+              Growth-Focused Services
+            </h2>
+
+            <p className="text-white/60 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+
+              We create scalable digital systems focused on performance,
+              optimization, and measurable business growth.
+
+            </p>
+
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {[
+              {
+                title: "Performance Marketing",
+                icon: <TrendingUp size={42} />,
+              },
+              {
+                title: "Lead Generation",
+                icon: <BarChart3 size={42} />,
+              },
+              {
+                title: "Media Buying",
+                icon: <Megaphone size={42} />,
+              },
+              {
+                title: "Traffic Optimization",
+                icon: <Globe size={42} />,
+              },
+            ].map((service, index) => (
+
+              <motion.div
+                key={index}
+                whileHover={{ y: -10 }}
+                className="group bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/[0.07] hover:-translate-y-4 hover:shadow-[0_0_40px_rgba(0,170,255,0.12)] transition-all duration-500"
+              >
+
+                <div className="text-cyan-400 mb-8 group-hover:scale-110 transition-all duration-300">
+
+                  {service.icon}
+
+                </div>
+
+                <h3 className="text-2xl font-semibold mb-4">
+                  {service.title}
+                </h3>
+
+                <p className="text-white/60 leading-relaxed">
+
+                  Scalable digital systems built for measurable
+                  performance and business growth.
+
+                </p>
+
+              </motion.div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+{/* STATS SECTION */}
+
+<section className="py-32 px-6 border-t border-white/5">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+
+      {[
+        {
+          number: "250+",
+          label: "Campaigns Optimized",
+        },
+        {
+          number: "120M+",
+          label: "Traffic Generated",
+        },
+        {
+          number: "320%",
+          label: "Average Growth",
+        },
+        {
+          number: "24/7",
+          label: "Performance Monitoring",
+        },
+      ].map((item, index) => (
+
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          viewport={{ once: true }}
+          className="bg-white/5 border border-white/10 rounded-[30px] p-8 text-center backdrop-blur-xl hover:border-cyan-400/30 transition-all duration-500"
+        >
+
+          <h3 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
+
+            {item.number}
+
+          </h3>
+
+          <p className="text-white/60">
+            {item.label}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        </motion.div>
+
+      ))}
+
     </div>
+
+  </div>
+
+</section>
+
+{/* CASE STUDIES */}
+
+<section className="py-32 px-6 border-t border-white/5 overflow-hidden relative">
+
+  <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full"></div>
+
+  <div className="max-w-7xl mx-auto relative z-10">
+
+    <div className="text-center mb-20">
+
+      <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 rounded-full px-5 py-3 text-sm mb-8">
+
+        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+
+        Featured Case Studies
+
+      </div>
+
+      <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-8">
+
+        Real Results.
+        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          {" "}Real Growth.
+        </span>
+
+      </h2>
+
+      <p className="text-white/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+
+        Every optimization and campaign is built to generate
+        measurable business growth and scalable performance.
+
+      </p>
+
+    </div>
+
+    <div className="grid lg:grid-cols-2 gap-10">
+
+      {[
+        {
+          title: "Lead Generation System",
+          growth: "+320%",
+          desc: "Performance-focused funnel optimized for scalable lead acquisition.",
+        },
+        {
+          title: "Traffic Optimization Campaign",
+          growth: "+245%",
+          desc: "Advanced campaign optimization focused on traffic quality and ROAS.",
+        },
+      ].map((item, index) => (
+
+        <motion.div
+          key={index}
+          whileHover={{ y: -10 }}
+          className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-2xl p-10 hover:border-cyan-400/30 transition-all duration-500"
+        >
+
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+
+          <div className="relative z-10">
+
+            <div className="flex items-center justify-between mb-16">
+
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-600 shadow-[0_0_40px_rgba(0,170,255,0.3)]"></div>
+
+              <div className="flex items-center gap-2 text-cyan-400">
+
+                View Project
+
+                <ArrowUpRight size={20} />
+
+              </div>
+
+            </div>
+
+            <h3 className="text-4xl font-bold mb-6">
+
+              {item.title}
+
+            </h3>
+
+            <p className="text-white/60 text-lg leading-relaxed mb-10">
+
+              {item.desc}
+
+            </p>
+
+            <div className="flex items-end justify-between">
+
+              <div>
+
+                <p className="text-white/40 mb-2">
+                  Growth
+                </p>
+
+                <h4 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+
+                  {item.growth}
+
+                </h4>
+
+              </div>
+
+              <button className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-cyan-500/10 transition-all duration-300">
+
+                <ArrowUpRight />
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </motion.div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* CTA SECTION */}
+
+<section className="py-32 px-6 border-t border-white/5">
+
+  <div className="max-w-5xl mx-auto text-center">
+
+    <div className="border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-2xl rounded-[40px] p-10 md:p-16 relative overflow-hidden">
+
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full"></div>
+
+      <div className="relative z-10">
+
+        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-8">
+
+          Ready To Scale
+          <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            {" "}Your Brand?
+          </span>
+
+        </h2>
+
+        <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-12">
+
+          Let’s build scalable digital growth systems focused on
+          performance, optimization, and measurable business results.
+
+        </p>
+
+        <button className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+
+          Start Your Growth Journey
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+      {/* FOOTER */}
+      <footer className="border-t border-white/5 py-20 px-6">
+
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
+
+          <div>
+
+            <h3 className="text-3xl font-bold mb-4">
+              Leadynox Media
+            </h3>
+
+            <div className="space-y-3 text-white/60">
+
+              <div className="flex items-center gap-3">
+                <Mail size={18} />
+                info@leadynoxmedia.com
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Mail size={18} />
+                mohdsufiyan@leadynoxmedia.com
+              </div>
+
+            </div>
+
+          </div>
+
+          <p className="text-white/40 text-center lg:text-right">
+            © 2026 Leadynox Media. All rights reserved.
+          </p>
+
+        </div>
+
+      </footer>
+
+    </main>
   );
 }
