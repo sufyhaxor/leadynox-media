@@ -162,30 +162,29 @@ useEffect(() => {
 
       {/* NAVBAR */}
       <header
-  className={`fixed top-0 left-0 w-full z-50 px-3 md:px-6 py-4 md:py-6 transition-all duration-500 ${
+  className={`fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-500 ${
     showNavbar
       ? "translate-y-0 opacity-100"
       : "-translate-y-full opacity-0"
   }`}
 >
-        <div className="max-w-7xl mx-auto relative pl-20 md:pl-24">
-          {/* FLOATING LOGO */}
-<div className="absolute -left-2 md:-left-10 top-1/2 -translate-y-1/2 z-[60]">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full px-5 py-2 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
+            {/* LOGO */}
+            <div className="flex items-center shrink-0">
   <Image
-  src="/logo.png"
-  alt="Leadynox Media"
-  width={180}
-  height={60}
-  priority
-  className="w-[180px] md:w-[170px] h-auto object-contain"
-/>
+    src="/logo.png"
+    alt="Leadynox Media"
+    width={180}
+    height={50}
+    priority
+    className="w-[70px] md:w-[95px] h-auto object-contain"
+  />
 </div>
 
-          <div className="border border-white/10 bg-black/40 backdrop-blur-2xl rounded-full px-4 md:px-5 py-2 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
-            {/* LOGO */}
-          
             {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center gap-10 text-white/70 ml-28">
+            <nav className="hidden lg:flex items-center gap-10 text-white/70">
 
               <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
                 Home
@@ -237,7 +236,7 @@ useEffect(() => {
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="lg:hidden mt-4 border border-white/10 bg-black/90 backdrop-blur-2xl rounded-[24px] p-5 mx-1"
+              className="lg:hidden mt-4 border border-white/10 bg-black/70 backdrop-blur-2xl rounded-[30px] p-6"
             >
 
               <div className="flex flex-col gap-6 text-white/80">
@@ -287,14 +286,14 @@ useEffect(() => {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
       <section
   id="home"
- className="relative min-h-screen flex items-center px-5 md:px-6 pt-36 md:pt-44 overflow-hidden"
+  className="relative min-h-screen flex items-center px-6 pt-52"
 >
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#2563eb20,transparent_35%)]"></div>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 lg:gap-20 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
         
           {/* LEFT */}
           <motion.div
@@ -311,7 +310,7 @@ useEffect(() => {
 
             </div>
 
-            <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-[1.05] mb-6 md:mb-8">
+            <h1 className="max-w-4xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
 
               Scaling Brands Through{" "}
 
@@ -323,7 +322,7 @@ useEffect(() => {
 
             </h1>
 
-            <p className="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mb-8 md:mb-10">
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
 
               Leadynox Media helps businesses generate scalable traffic,
               quality leads, and measurable digital growth through
@@ -331,7 +330,7 @@ useEffect(() => {
 
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-10 w-full sm:w-auto">
+            <div className="flex flex-wrap gap-5 mb-10">
 
               <button
   onMouseEnter={() => setHovered(true)}
@@ -362,13 +361,13 @@ useEffect(() => {
             className="relative float-animation"
           >
 
-            <div className="relative w-full h-[420px] sm:h-[520px] md:h-[620px] flex items-center justify-center">
+            <div className="relative w-full h-[620px] flex items-center justify-center">
 
               <div className="absolute w-[520px] h-[520px] border border-cyan-500/20 rounded-full animate-spin-slow"></div>
 
               <div className="absolute w-[380px] h-[380px] border border-blue-500/20 rounded-full animate-spin-reverse"></div>
 
-              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-5 md:p-10 w-[280px] sm:w-[340px] md:w-[360px]">
+              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-6 md:p-10 w-[360px] shadow-[0_0_80px_rgba(14,165,255,0.15)]">
 
                 <div className="flex items-center justify-between mb-10">
 
@@ -447,7 +446,7 @@ useEffect(() => {
 
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
             {[
               {
@@ -663,7 +662,7 @@ useEffect(() => {
 
     </div>
 
-    <div className="grid lg:grid-cols-2 gap-6 md:gap-10">
+    <div className="grid lg:grid-cols-2 gap-10">
 
       {[
         {
@@ -802,22 +801,15 @@ useEffect(() => {
 
   <div className="max-w-7xl mx-auto relative z-10">
 
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
+    <div className="grid lg:grid-cols-4 gap-16">
 
       {/* BRAND */}
 
       <div>
 
-       <div className="mb-6">
-  <Image
-    src="/logo.png"
-    alt="Leadynox Media"
-    width={200}
-    height={110}
-    priority
-    className="w-[170px] md:w-[240px] h-auto object-contain"
-  />
-</div>
+        <div className="text-3xl font-bold tracking-tight mb-6">
+          Leady<span className="text-cyan-400">nox</span>
+        </div>
 
         <p className="text-white/50 leading-relaxed mb-8">
           Performance-focused digital systems designed to help modern brands
