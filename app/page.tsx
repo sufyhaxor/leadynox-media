@@ -45,6 +45,7 @@ export default function HomePage() {
 
   }, []);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [hovered, setHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -65,7 +66,55 @@ export default function HomePage() {
     mouseX.set(e.clientX - 200);
     mouseY.set(e.clientY - 200);
   };
+useEffect(() => {
 
+  if (mobileMenu) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+}, [mobileMenu]);
+useEffect(() => {
+
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setMobileMenu(false);
+    }
+  };
+
+  window.addEventListener("keydown", handleEscape);
+
+  return () => {
+    window.removeEventListener("keydown", handleEscape);
+  };
+
+}, []);
+useEffect(() => {
+
+  let lastScroll = 0;
+
+  const handleScroll = () => {
+
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+
+    lastScroll = currentScroll;
+
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+
+}, []);
   return (
   <>
 
@@ -84,7 +133,7 @@ export default function HomePage() {
 
     <main
   onMouseMove={handleMouseMove}
-  className="bg-black text-white overflow-hidden relative"
+  className="bg-black text-white relative"
 >
 
   <div
@@ -112,10 +161,16 @@ export default function HomePage() {
       />
 
       {/* NAVBAR */}
-      <header className="fixed top-0 left-0 w-full z-50 px-6 py-6">
+      <header
+  className={`fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-500 ${
+    showNavbar
+      ? "translate-y-0 opacity-100"
+      : "-translate-y-full opacity-0"
+  }`}
+>
         <div className="max-w-7xl mx-auto">
 
-          <div className="border border-white/10 bg-black/40 backdrop-blur-2xl rounded-full px-8 py-5 flex items-center justify-between shadow-[0_0_40px_rgba(0,170,255,0.08)]">
+          <div className="border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full px-8 py-5 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
 
             {/* LOGO */}
             <div className="text-2xl font-bold">
@@ -146,7 +201,10 @@ export default function HomePage() {
             {/* RIGHT */}
             <div className="flex items-center gap-4">
 
-              <button className="hidden md:flex premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+              <button
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+  className="hidden md:flex premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
                 Let’s Talk
 
@@ -177,21 +235,37 @@ export default function HomePage() {
 
               <div className="flex flex-col gap-6 text-white/80">
 
-                <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
-                  Home
-                </a>
+                <a
+  href="#home"
+  onClick={() => setMobileMenu(false)}
+  className="hover:text-cyan-400 transition-all duration-300"
+>
+  Home
+</a>
 
-                <a href="#services" className="hover:text-cyan-400 transition-all duration-300">
-                  Services
-                </a>
+                <a
+  href="#services"
+  onClick={() => setMobileMenu(false)}
+  className="hover:text-cyan-400 transition-all duration-300"
+>
+  Services
+</a>
 
-                <a href="#case-studies" className="hover:text-cyan-400 transition-all duration-300">
-                  About
-                </a>
+                <a
+  href="#case-studies"
+  onClick={() => setMobileMenu(false)}
+  className="hover:text-cyan-400 transition-all duration-300"
+>
+  About
+</a>
 
-                <a href="#contact" className="hover:text-cyan-400 transition-all duration-300">
-                  Contact
-                </a>
+                <a
+  href="#contact"
+  onClick={() => setMobileMenu(false)}
+  className="hover:text-cyan-400 transition-all duration-300"
+>
+  Contact
+</a>
 
               </div>
 
@@ -203,6 +277,7 @@ export default function HomePage() {
       </header>
 
       {/* HERO */}
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
       <section
   id="home"
   className="relative min-h-screen flex items-center px-6 pt-52"
@@ -213,7 +288,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#2563eb20,transparent_35%)]"></div>
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
-
+        
           {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 80 }}
@@ -229,7 +304,7 @@ export default function HomePage() {
 
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+            <h1 className="max-w-4xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
 
               Scaling Brands Through{" "}
 
@@ -262,7 +337,7 @@ export default function HomePage() {
 
               </button>
 
-              <button className="magnetic-button border border-white/10 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
+              <button className="magnetic-button border border-white/10 bg-white/[0.03] backdrop-blur-xl px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
 
                 Explore Services
 
@@ -308,7 +383,7 @@ export default function HomePage() {
 
                 <div className="space-y-6">
 
-                  <div className="bg-black/40 border border-white/5 rounded-3xl p-6">
+                  <div className="bg-black/30 border border-white/5 rounded-3xl p-6">
 
                     <div className="flex items-center justify-between mb-4">
 
