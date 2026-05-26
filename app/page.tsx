@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react"; 
 
 import {
   motion,
@@ -21,6 +21,29 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
+    const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+
+  useEffect(() => {
+
+    const updateMousePosition = (e: MouseEvent) => {
+
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+    };
+
+  }, []);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const mouseX = useMotionValue(0);
@@ -44,10 +67,20 @@ export default function HomePage() {
   };
 
   return (
-    <main
-      onMouseMove={handleMouseMove}
-      className="bg-black text-white overflow-hidden relative"
-    >
+    <main className="bg-black text-white overflow-hidden relative">
+
+  <div
+    className="pointer-events-none fixed inset-0 z-0 transition duration-300"
+    style={{
+      background: `
+      radial-gradient(
+        600px at ${mousePosition.x}px ${mousePosition.y}px,
+        rgba(0,180,255,0.12),
+        transparent 80%
+      )
+    `,
+    }}
+  />
       {/* NOISE */}
       <div className="noise"></div>
 
@@ -197,7 +230,7 @@ export default function HomePage() {
 
             <div className="flex flex-wrap gap-5">
 
-              <button className="group bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+              <button className="magnetic-button bg-gradient-to-r ... from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
                 Get Started
 
@@ -205,7 +238,7 @@ export default function HomePage() {
 
               </button>
 
-              <button className="border border-white/10 bg-white/5 backdrop-blur-xl px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-white/10 transition-all duration-300">
+              <button className="magnetic-button border border-white/10 ...">
 
                 Explore Services
 
@@ -613,6 +646,214 @@ export default function HomePage() {
 
       </footer>
 
+          {/* CONTACT CTA SECTION */}
+
+      <section className="relative py-32 px-6 overflow-hidden">
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#06b6d420,transparent_60%)]"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+
+          <motion.div
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="rounded-[40px] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 backdrop-blur-2xl p-14 text-center"
+          >
+
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white/70 mb-8">
+              <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+              Let’s Build Something Massive
+            </div>
+
+            <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
+              Ready To Scale
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Your Brand?
+              </span>
+            </h2>
+
+            <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed mb-12">
+              Leadynox Media helps brands grow through scalable performance marketing,
+              lead generation systems, media buying, and conversion-focused execution.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+
+              <button className="bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(0,170,255,0.35)]">
+                Book Strategy Call
+              </button>
+
+              <button className="border border-white/10 bg-white/5 backdrop-blur-xl px-10 py-5 rounded-full font-semibold text-lg hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
+                Explore Services
+              </button>
+
+            </div>
+
+          </motion.div>
+
+        </div>
+
+      </section>
+
+
+
+
+
+      {/* FOOTER */}
+
+      <footer className="relative border-t border-white/10 px-6 py-20 overflow-hidden">
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#0ea5e910,transparent_60%)]"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+
+          <div className="grid lg:grid-cols-4 gap-16">
+
+            {/* BRAND */}
+
+            <div>
+
+              <div className="text-3xl font-bold tracking-tight mb-6">
+                Leady<span className="text-cyan-400">nox</span>
+              </div>
+
+              <p className="text-white/50 leading-relaxed mb-8">
+                Performance-focused digital systems designed to help modern brands
+                scale through measurable growth.
+              </p>
+
+              <div className="flex gap-4">
+
+               <a
+  href="#"
+  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+>
+  <div className="text-sm font-bold">
+    IG
+  </div>
+</a>
+
+                <a
+                  href="#"
+                  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+                >
+                  in
+                </a>
+
+                <a
+                  href="mailto:info@leadynoxmedia.com"
+                  className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+                >
+                  <Mail size={18} />
+                </a>
+
+              </div>
+
+            </div>
+
+
+
+            {/* LINKS */}
+
+            <div>
+
+              <h4 className="text-lg font-semibold mb-6">
+                Navigation
+              </h4>
+
+              <div className="flex flex-col gap-4 text-white/50">
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Home
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Services
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  About
+                </a>
+
+                <a href="#" className="hover:text-cyan-400 transition-all duration-300">
+                  Contact
+                </a>
+
+              </div>
+
+            </div>
+
+
+
+            {/* SERVICES */}
+
+            <div>
+
+              <h4 className="text-lg font-semibold mb-6">
+                Services
+              </h4>
+
+              <div className="flex flex-col gap-4 text-white/50">
+
+                <div>Performance Marketing</div>
+                <div>Lead Generation</div>
+                <div>Media Buying</div>
+                <div>Traffic Optimization</div>
+
+              </div>
+
+            </div>
+
+
+
+            {/* CONTACT */}
+
+            <div>
+
+              <h4 className="text-lg font-semibold mb-6">
+                Contact
+              </h4>
+
+              <div className="flex flex-col gap-5 text-white/50">
+
+                <div>
+                  info@leadynoxmedia.com
+                </div>
+
+                <div>
+                  mohdsufiyan@leadynoxmedia.com
+                </div>
+
+                <div>
+                  Kanpur, Uttar Pradesh — India
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div className="text-white/40 text-sm">
+              © 2026 Leadynox Media. All rights reserved.
+            </div>
+
+            <div className="text-white/40 text-sm">
+              Built For Scalable Digital Growth
+            </div>
+
+          </div>
+
+        </div>
+
+      </footer>
     </main>
   );
 }
