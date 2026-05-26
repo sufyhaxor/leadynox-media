@@ -45,7 +45,7 @@ export default function HomePage() {
 
   }, []);
   const [mobileMenu, setMobileMenu] = useState(false);
-
+  const [hovered, setHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -67,6 +67,21 @@ export default function HomePage() {
   };
 
   return (
+  <>
+
+    <motion.div
+      className={`custom-cursor ${hovered ? "hovered" : ""}`}
+      animate={{
+        x: mousePosition.x,
+        y: mousePosition.y,
+      }}
+      transition={{
+        type: "tween",
+        ease: "linear",
+        duration: 0.05,
+      }}
+    />
+
     <main className="bg-black text-white overflow-hidden relative">
 
   <div
@@ -853,7 +868,11 @@ export default function HomePage() {
 
         </div>
 
-      </footer>
+            </footer>
+
     </main>
-  );
+
+  </>
+
+);
 }

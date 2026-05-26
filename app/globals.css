@@ -129,3 +129,35 @@ body {
 .magnetic-button:hover::before {
   transform: translate(30%, 30%);
 }
+/* CUSTOM CURSOR */
+
+* {
+  cursor: none;
+}
+
+.custom-cursor {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  background: rgba(0, 200, 255, 0.9);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    background 0.2s ease,
+    transform 0.08s linear;
+  box-shadow:
+    0 0 20px rgba(0,200,255,0.6),
+    0 0 60px rgba(0,200,255,0.35);
+}
+
+.custom-cursor.hovered {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 200, 255, 0.15);
+  border: 1px solid rgba(0, 200, 255, 0.35);
+}
