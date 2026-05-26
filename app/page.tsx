@@ -82,7 +82,10 @@ export default function HomePage() {
       }}
     />
 
-    <main className="bg-black text-white overflow-hidden relative">
+    <main
+  onMouseMove={handleMouseMove}
+  className="bg-black text-white overflow-hidden relative"
+>
 
   <div
     className="pointer-events-none fixed inset-0 z-0 transition duration-300"
@@ -143,7 +146,7 @@ export default function HomePage() {
             {/* RIGHT */}
             <div className="flex items-center gap-4">
 
-              <button className="hidden md:flex bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+              <button className="hidden md:flex premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
                 Let’s Talk
 
@@ -202,7 +205,7 @@ export default function HomePage() {
       {/* HERO */}
       <section
   id="home"
-  className="relative min-h-screen flex items-center px-6 pt-44"
+  className="relative min-h-screen flex items-center px-6 pt-52"
 >
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
@@ -248,7 +251,10 @@ export default function HomePage() {
 
             <div className="flex flex-wrap gap-5">
 
-              <button className="magnetic-button bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+              <button
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+  className="magnetic-button premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
                 Get Started
 
@@ -693,7 +699,7 @@ export default function HomePage() {
 
         </p>
 
-        <button className="bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+        <button className="premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
 
           Start Your Growth Journey
 
