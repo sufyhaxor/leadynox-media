@@ -22,13 +22,24 @@ import {
 
 export default function HomePage() {
     
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [hovered, setHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({
+const [mobileMenu, setMobileMenu] = useState(false);
+const [showNavbar, setShowNavbar] = useState(true);
+const [loading, setLoading] = useState(true);
+const [mousePosition, setMousePosition] = useState({
   x: 0,
   y: 0,
 });
+
+useEffect(() => {
+
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 2200);
+
+  return () => clearTimeout(timer);
+
+}, []);
+
 useEffect(() => {
 
   const updateMousePosition = (e: MouseEvent) => {
@@ -100,6 +111,62 @@ useEffect(() => {
   return (
   <>
 
+{loading && (
+
+  <motion.div
+    initial={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    className="fixed inset-0 z-[99999] bg-black flex items-center justify-center overflow-hidden"
+  >
+
+    {/* BACKGROUND GLOW */}
+    <div className="absolute w-[500px] h-[500px] rounded-full bg-orange-500/10 blur-[140px]" />
+
+    {/* CONTENT */}
+    <div className="relative z-10 flex flex-col items-center">
+
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-[38px] sm:text-[52px] font-extrabold tracking-tight"
+      >
+
+        <span className="text-orange-500">Leady</span>
+        <span className="text-white">Nox</span>
+        <span className="text-orange-500"> Media</span>
+
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="text-white/40 text-[11px] tracking-[0.35em] uppercase mt-3"
+      >
+
+        PERFORMANCE MARKETING AGENCY
+
+      </motion.p>
+
+      {/* LOADING LINE */}
+      <div className="mt-10 w-[220px] h-[3px] bg-white/10 rounded-full overflow-hidden">
+
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+          className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
+        />
+
+      </div>
+
+    </div>
+
+  </motion.div>
+
+)}
 
     
    <main className="bg-black text-white relative overflow-x-hidden">
@@ -133,15 +200,22 @@ useEffect(() => {
 
           <div className="relative border border-white/10 bg-black/25 backdrop-blur-md rounded-full h-[54px] sm:h-[60px] md:h-[66px] px-3 sm:px-5 md:px-7 flex items-center justify-between shadow-[0_0_60px_rgba(249,115,22,0.12)]">
             {/* LOGO */}
-            <div className="flex items-center justify-start min-w-[95px] md:min-w-[125px] h-full -mt-[1px]">
-  <Image
-  src="/logo.png"
-  alt="Leadynox Media"
-  width={220}
-  height={70}
-  priority
-  className="w-[88px] md:w-[108px] lg:w-[118px] h-auto object-contain select-none"
- />
+<div className="flex flex-col items-start justify-center min-w-[140px] md:min-w-[180px] h-full leading-none">
+
+  <h2 className="text-[20px] md:text-[24px] font-extrabold tracking-tight">
+
+    <span className="text-orange-500">Leady</span>
+    <span className="text-white">Nox</span>
+    <span className="text-orange-500"> Media</span>
+
+  </h2>
+
+  <p className="text-white/40 text-[7px] md:text-[9px] tracking-[0.32em] uppercase mt-[4px]">
+
+    PERFORMANCE MARKETING AGENCY
+
+  </p>
+
 </div>
 
             {/* DESKTOP NAV */}
@@ -170,8 +244,7 @@ useEffect(() => {
             <div className="flex items-center gap-4">
 
               <button
-  onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
+  
   className="hidden md:flex premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
                 Let’s Talk
@@ -248,7 +321,7 @@ useEffect(() => {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"></div>
       <section
   id="home"
-  className="relative min-h-screen flex items-center px-5 sm:px-6 pt-28 sm:pt-32 md:pt-40 overflow-hidden"
+  className="relative min-h-screen flex items-start lg:items-center px-5 sm:px-6 pt-28 sm:pt-32 md:pt-40 pb-20 overflow-hidden"
 >
 
 {/* BACKGROUND MOVING TEXT */}
@@ -297,7 +370,7 @@ useEffect(() => {
 
             </div>
 
-            <h1 className="max-w-[95%] sm:max-w-4xl text-[3rem] leading-[0.9] sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] sm:leading-tight mb-6 md:mb-8">
+            <h1 className="max-w-[95%] sm:max-w-4xl text-[2.7rem] leading-[0.95] sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] sm:leading-tight mb-6 md:mb-8">
 
               Scaling Brands Through{" "}
 
@@ -317,11 +390,10 @@ useEffect(() => {
 
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-10 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-4 sm:mb-10 w-full sm:w-auto">
 
               <button
-  onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
+ 
   className="magnetic-button premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center justify-center text-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
                 Get Started
@@ -341,7 +413,7 @@ useEffect(() => {
           </motion.div>
 
 {/* RIGHT */}
-<div className="absolute inset-0 flex items-center justify-center lg:justify-end pointer-events-none z-0">
+<div className="relative lg:absolute lg:inset-x-0 lg:bottom-0 flex flex-col items-center lg:items-end justify-center lg:justify-end pointer-events-none z-0 mt-2 sm:mt-4 lg:mt-0">
 
   <Image
     src="/hero-team.png"
@@ -349,12 +421,65 @@ useEffect(() => {
     width={850}
     height={850}
     priority
-    className="hero-team-image object-contain select-none mt-16 sm:mt-20 lg:mt-0 lg:translate-x-16"
+    className="hero-team-image object-contain select-none lg:translate-x-16"
   />
+
+  {/* BRAND TEXT */}
+<div className="mt-2 lg:mt-4 lg:mr-24 text-center lg:text-right">
+
+  <h3 className="text-[20px] sm:text-[24px] font-bold tracking-wide drop-shadow-[0_0_25px_rgba(249,115,22,0.45)]">
+
+    <span className="text-orange-500">Leady</span>
+    <span className="text-white">Nox</span>
+    <span className="text-orange-500"> Media</span>
+
+  </h3>
+
+  <p className="text-white/40 text-[11px] sm:text-xs tracking-[0.25em] uppercase mt-1">
+
+    PERFORMANCE MARKETING AGENCY
+
+  </p>
+
+</div>
 
 </div>
 
         </div>
+
+{/* TRUSTED BY */}
+
+<section className="py-10 border-t border-white/5 border-b border-white/5 overflow-hidden">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 opacity-60">
+
+      {[
+        "META",
+        "GOOGLE",
+        "TABOOLA",
+        "OUTBRAIN",
+        "TIKTOK",
+        "MGID",
+      ].map((item, index) => (
+
+        <div
+          key={index}
+          className="text-white/40 text-sm md:text-lg tracking-[0.35em] font-semibold hover:text-orange-400 transition-all duration-300"
+        >
+
+          {item}
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
 
       </section>
 
@@ -384,35 +509,51 @@ useEffect(() => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
 
             {[
-              {
-                title: "Performance Marketing",
-                icon: <TrendingUp size={42} />,
-              },
-              {
-                title: "Lead Generation",
-                icon: <BarChart3 size={42} />,
-              },
-              {
-                title: "Media Buying",
-                icon: <Megaphone size={42} />,
-              },
-              {
-                title: "Traffic Optimization",
-                icon: <Globe size={42} />,
-              },
-            ].map((service, index) => (
+  {
+    title: "Performance Marketing",
+    description:
+      "High-converting paid traffic systems optimized for scalable customer acquisition and measurable ROI.",
+    icon: <TrendingUp size={42} />,
+  },
+  {
+    title: "Lead Generation",
+    description:
+      "Advanced lead funnels designed to generate quality leads at lower acquisition costs.",
+    icon: <BarChart3 size={42} />,
+  },
+  {
+    title: "Media Buying",
+    description:
+      "Strategic campaign scaling across Meta, Google, Native, and high-volume traffic platforms.",
+    icon: <Megaphone size={42} />,
+  },
+  {
+    title: "Traffic Optimization",
+    description:
+      "Data-driven optimization systems focused on conversion quality and long-term campaign scaling.",
+    icon: <Globe size={42} />,
+  },
+].map((service, index) => (
 
               <motion.div
                 key={index}
                 whileHover={{ y: -10 }}
-                className="group bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-md hover:border-orange-400/30 hover:bg-white/[0.07] hover:-translate-y-4 hover:shadow-[0_0_40px_rgba(249,115,22,0.12)] transition-all duration-500"
+                className="group bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-md hover:border-orange-400/30 hover:bg-white/[0.07] hover:-translate-y-5 hover:rotate-[0.5deg] hover:shadow-[0_0_40px_rgba(249,115,22,0.12)] transition-all duration-500"
               >
 
-                <div className="text-orange-400 mb-8 group-hover:scale-110 transition-all duration-300">
+                <motion.div
+  animate={{ y: [0, -6, 0] }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="text-orange-400 mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+>
 
                   {service.icon}
 
-                </div>
+                </motion.div>
 
                 <h3 className="text-2xl font-semibold mb-4">
                   {service.title}
@@ -420,10 +561,9 @@ useEffect(() => {
 
                 <p className="text-white/60 leading-relaxed">
 
-                  Scalable digital systems built for measurable
-                  performance and business growth.
+  {service.description}
 
-                </p>
+</p>
 
               </motion.div>
 
@@ -597,19 +737,29 @@ useEffect(() => {
 
     </div>
 
-    <div className="grid lg:grid-cols-2 gap-10">
+    <div className="grid md:grid-cols-2 gap-10">
 
       {[
         {
-          title: "Lead Generation System",
-          growth: "+320%",
-          desc: "Performance-focused funnel optimized for scalable lead acquisition.",
-        },
-        {
-          title: "Traffic Optimization Campaign",
-          growth: "+245%",
-          desc: "Advanced campaign optimization focused on traffic quality and ROAS.",
-        },
+  title: "Insurance Lead Funnel",
+  growth: "+320%",
+  desc: "Performance-focused insurance funnel optimized for scalable lead acquisition and lower CPL.",
+},
+{
+  title: "Native Traffic Scaling System",
+  growth: "+245%",
+  desc: "High-volume native traffic campaign optimized for ROAS and conversion quality.",
+},
+{
+  title: "Home Services Lead Generation",
+  growth: "+180%",
+  desc: "Lead generation system focused on high-intent home services traffic.",
+},
+{
+  title: "Performance Media Buying",
+  growth: "+410%",
+  desc: "Advanced multi-platform media buying optimized for scale and profitability.",
+},
       ].map((item, index) => (
 
         <motion.div
@@ -717,7 +867,7 @@ useEffect(() => {
 
         <button className="premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
-          Start Your Growth Journey
+          Book A Strategy Call
 
         </button>
 
