@@ -21,51 +21,33 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
-    const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-
-    const updateMousePosition = (e: MouseEvent) => {
-
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-
-    };
-
-    window.addEventListener("mousemove", updateMousePosition);
-
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
-
-  }, []);
+    
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [hovered, setHovered] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const [mousePosition, setMousePosition] = useState({
+  x: 0,
+  y: 0,
+});
+useEffect(() => {
 
-  const smoothMouseX = useSpring(mouseX, {
-    stiffness: 120,
-    damping: 20,
-  });
+  const updateMousePosition = (e: MouseEvent) => {
 
-  const smoothMouseY = useSpring(mouseY, {
-    stiffness: 120,
-    damping: 20,
-  });
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
 
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>
-  ) => {
-    mouseX.set(e.clientX - 200);
-    mouseY.set(e.clientY - 200);
   };
+
+  window.addEventListener("mousemove", updateMousePosition);
+
+  return () => {
+    window.removeEventListener("mousemove", updateMousePosition);
+  };
+
+}, []);
+
 useEffect(() => {
 
   if (mobileMenu) {
@@ -118,51 +100,30 @@ useEffect(() => {
   return (
   <>
 
-    <motion.div
-      className={`custom-cursor ${hovered ? "hovered" : ""}`}
-      animate={{
-        x: mousePosition.x,
-        y: mousePosition.y,
-      }}
-      transition={{
-        type: "tween",
-        ease: "linear",
-        duration: 0.05,
-      }}
-    />
 
-    <main
-  onMouseMove={handleMouseMove}
-  className="bg-black text-white relative"
->
-
-  <div
-    className="pointer-events-none fixed inset-0 z-0 transition duration-300"
-    style={{
-      background: `
+    
+   <main className="bg-black text-white relative overflow-x-hidden">
+    <div
+  className="pointer-events-none fixed inset-0 z-0 hidden md:block"
+  style={{
+    background: `
       radial-gradient(
-        600px at ${mousePosition.x}px ${mousePosition.y}px,
-        rgba(0,180,255,0.12),
+        500px at ${mousePosition.x}px ${mousePosition.y}px,
+        rgba(249,115,22,0.10),
         transparent 80%
       )
     `,
-    }}
-  />
+  }}
+/>
+
+  
       {/* NOISE */}
       <div className="noise"></div>
 
-      {/* MOUSE GLOW */}
-      <motion.div
-        className="pointer-events-none fixed top-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[120px] z-0"
-        style={{
-          x: smoothMouseX,
-          y: smoothMouseY,
-        }}
-      />
-
+  
       {/* NAVBAR */}
       <header
-  className={`fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-500 ${
+  className={`fixed top-0 left-0 w-full z-50 px-3 sm:px-6 py-3 sm:py-6 transition-all duration-500 ${
     showNavbar
       ? "translate-y-0 opacity-100"
       : "-translate-y-full opacity-0"
@@ -170,7 +131,7 @@ useEffect(() => {
 >
         <div className="max-w-7xl mx-auto">
 
-          <div className="relative border border-white/10 bg-black/25 backdrop-blur-2xl rounded-full h-[72px] px-5 md:px-7 flex items-center justify-between shadow-[0_0_60px_rgba(0,170,255,0.12)]">
+          <div className="relative border border-white/10 bg-black/25 backdrop-blur-md rounded-full h-[54px] sm:h-[60px] md:h-[66px] px-3 sm:px-5 md:px-7 flex items-center justify-between shadow-[0_0_60px_rgba(249,115,22,0.12)]">
             {/* LOGO */}
             <div className="flex items-center justify-start min-w-[95px] md:min-w-[125px] h-full -mt-[1px]">
   <Image
@@ -186,31 +147,32 @@ useEffect(() => {
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 xl:gap-10 text-white/70">
 
-              <a href="#home" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#home" className="hover:text-orange-400 transition-all duration-300">
                 Home
               </a>
 
-              <a href="#services" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#services" className="hover:text-orange-400 transition-all duration-300">
                 Services
               </a>
 
-              <a href="#case-studies" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#case-studies" className="hover:text-orange-400 transition-all duration-300">
                 About
               </a>
 
-              <a href="#contact" className="hover:text-cyan-400 transition-all duration-300">
+              <a href="#contact" className="hover:text-orange-400 transition-all duration-300">
                 Contact
               </a>
 
             </nav>
 
             {/* RIGHT */}
+            
             <div className="flex items-center gap-4">
 
               <button
   onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
-  className="hidden md:flex premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+  className="hidden md:flex premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 rounded-full font-medium hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
                 Let’s Talk
 
@@ -219,7 +181,7 @@ useEffect(() => {
               {/* MOBILE MENU BUTTON */}
               <button
                 onClick={() => setMobileMenu(!mobileMenu)}
-                className="lg:hidden w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center"
+                className="lg:hidden w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center"
               >
 
                 {mobileMenu ? <X size={22} /> : <Menu size={22} />}
@@ -236,7 +198,7 @@ useEffect(() => {
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="lg:hidden mt-4 border border-white/10 bg-black/70 backdrop-blur-2xl rounded-[30px] p-6"
+              className="lg:hidden mt-4 border border-white/10 bg-black/70 backdrop-blur-md rounded-[30px] p-6"
             >
 
               <div className="flex flex-col gap-6 text-white/80">
@@ -244,7 +206,7 @@ useEffect(() => {
                 <a
   href="#home"
   onClick={() => setMobileMenu(false)}
-  className="hover:text-cyan-400 transition-all duration-300"
+  className="hover:text-orange-400 transition-all duration-300"
 >
   Home
 </a>
@@ -252,7 +214,7 @@ useEffect(() => {
                 <a
   href="#services"
   onClick={() => setMobileMenu(false)}
-  className="hover:text-cyan-400 transition-all duration-300"
+  className="hover:text-orange-400 transition-all duration-300"
 >
   Services
 </a>
@@ -260,7 +222,7 @@ useEffect(() => {
                 <a
   href="#case-studies"
   onClick={() => setMobileMenu(false)}
-  className="hover:text-cyan-400 transition-all duration-300"
+  className="hover:text-orange-400 transition-all duration-300"
 >
   About
 </a>
@@ -268,7 +230,7 @@ useEffect(() => {
                 <a
   href="#contact"
   onClick={() => setMobileMenu(false)}
-  className="hover:text-cyan-400 transition-all duration-300"
+  className="hover:text-orange-400 transition-all duration-300"
 >
   Contact
 </a>
@@ -283,17 +245,42 @@ useEffect(() => {
       </header>
 
       {/* HERO */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"></div>
       <section
   id="home"
-  className="relative min-h-screen flex items-center px-6 pt-40 md:pt-52"
+  className="relative min-h-screen flex items-center px-5 sm:px-6 pt-28 sm:pt-32 md:pt-40 overflow-hidden"
 >
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0ea5ff20,transparent_35%)]"></div>
+{/* BACKGROUND MOVING TEXT */}
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#2563eb20,transparent_35%)]"></div>
+<div className="absolute inset-0 overflow-hidden opacity-[0.03] md:opacity-[0.015] pointer-events-none">
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
+  <div className="animate-marquee whitespace-nowrap text-[90px] md:text-[180px] font-black uppercase leading-none text-orange-500">
+
+    PERFORMANCE MARKETING • LEAD GENERATION • MEDIA BUYING • AUTOMATION •
+
+    PERFORMANCE MARKETING • LEAD GENERATION • MEDIA BUYING • AUTOMATION •
+
+  </div>
+
+  <div className="animate-marquee-reverse whitespace-nowrap text-[90px] md:text-[180px] font-black uppercase leading-none mt-10 text-orange-500">
+
+    SCALING BRANDS • DIGITAL GROWTH • ROI FOCUSED • PAID ADS •
+
+    SCALING BRANDS • DIGITAL GROWTH • ROI FOCUSED • PAID ADS •
+
+  </div>
+
+</div>  
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f9731620,transparent_35%)]"></div>
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#ea580c20,transparent_35%)]"></div>
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-10 items-center relative z-10 w-full">
+
+        
+
+        
         
           {/* LEFT */}
           <motion.div
@@ -302,19 +289,19 @@ useEffect(() => {
             transition={{ duration: 1 }}
           >
 
-            <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 backdrop-blur-xl rounded-full px-5 py-3 text-sm mb-8">
+            <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 backdrop-blur-md rounded-full px-4 py-2 text-[12px] sm:text-sm mb-8">
 
-              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></div>
 
               Performance Marketing Agency
 
             </div>
 
-            <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+            <h1 className="max-w-[95%] sm:max-w-4xl text-[3rem] leading-[0.9] sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] sm:leading-tight mb-6 md:mb-8">
 
               Scaling Brands Through{" "}
 
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
 
                 Digital Growth
 
@@ -322,7 +309,7 @@ useEffect(() => {
 
             </h1>
 
-            <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
+            <p className="text-white/60 text-[16px] sm:text-lg md:text-xl leading-relaxed max-w-xl mb-6 sm:mb-8 md:mb-10">
 
               Leadynox Media helps businesses generate scalable traffic,
               quality leads, and measurable digital growth through
@@ -330,12 +317,12 @@ useEffect(() => {
 
             </p>
 
-            <div className="flex flex-wrap gap-5 mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-10 w-full sm:w-auto">
 
               <button
   onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
-  className="magnetic-button premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+  className="magnetic-button premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold flex items-center justify-center text-center gap-2 hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
                 Get Started
 
@@ -343,7 +330,7 @@ useEffect(() => {
 
               </button>
 
-              <button className="magnetic-button border border-white/10 bg-white/[0.03] backdrop-blur-xl px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300">
+              <button className="magnetic-button border border-white/10 bg-white/[0.03] backdrop-blur-md px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:border-orange-400/40 hover:bg-orange-500/10 transition-all duration-300">
 
                 Explore Services
 
@@ -353,71 +340,19 @@ useEffect(() => {
 
           </motion.div>
 
-          {/* RIGHT */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative float-animation"
-          >
+{/* RIGHT */}
+<div className="absolute inset-0 flex items-center justify-center lg:justify-end pointer-events-none z-0">
 
-            <div className="relative w-full h-[620px] flex items-center justify-center">
+  <Image
+    src="/hero-team.png"
+    alt="Leadynox Team"
+    width={850}
+    height={850}
+    priority
+    className="hero-team-image object-contain select-none mt-16 sm:mt-20 lg:mt-0 lg:translate-x-16"
+  />
 
-              <div className="absolute w-[520px] h-[520px] border border-cyan-500/20 rounded-full animate-spin-slow"></div>
-
-              <div className="absolute w-[380px] h-[380px] border border-blue-500/20 rounded-full animate-spin-reverse"></div>
-
-              <div className="relative z-20 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[32px] p-6 md:p-10 w-full max-w-[360px] shadow-[0_0_80px_rgba(14,165,255,0.15)]">
-
-                <div className="flex items-center justify-between mb-10">
-
-                  <div>
-
-                    <h3 className="text-3xl font-bold">
-                      Leadynox Media
-                    </h3>
-
-                    <p className="text-white/50 mt-2">
-                      Performance Dashboard
-                    </p>
-
-                  </div>
-
-                  <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-600"></div>
-
-                </div>
-
-                <div className="space-y-6">
-
-                  <div className="bg-black/30 border border-white/5 rounded-3xl p-6">
-
-                    <div className="flex items-center justify-between mb-4">
-
-                      <span className="text-white/60">
-                        Growth Performance
-                      </span>
-
-                      <span className="text-cyan-400">
-                        +245%
-                      </span>
-
-                    </div>
-
-                    <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-
-                      <div className="h-full w-[85%] bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full"></div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </motion.div>
+</div>
 
         </div>
 
@@ -426,7 +361,7 @@ useEffect(() => {
       {/* SERVICES */}
       <section
   id="services"
-  className="py-32 px-6 border-t border-white/5"
+  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
         <div className="max-w-7xl mx-auto">
@@ -446,7 +381,7 @@ useEffect(() => {
 
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
 
             {[
               {
@@ -470,10 +405,10 @@ useEffect(() => {
               <motion.div
                 key={index}
                 whileHover={{ y: -10 }}
-                className="group bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/[0.07] hover:-translate-y-4 hover:shadow-[0_0_40px_rgba(0,170,255,0.12)] transition-all duration-500"
+                className="group bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-md hover:border-orange-400/30 hover:bg-white/[0.07] hover:-translate-y-4 hover:shadow-[0_0_40px_rgba(249,115,22,0.12)] transition-all duration-500"
               >
 
-                <div className="text-cyan-400 mb-8 group-hover:scale-110 transition-all duration-300">
+                <div className="text-orange-400 mb-8 group-hover:scale-110 transition-all duration-300">
 
                   {service.icon}
 
@@ -503,12 +438,12 @@ useEffect(() => {
 
 <section
   id="stats"
-  className="py-32 px-6 border-t border-white/5"
+  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
   <div className="max-w-7xl mx-auto">
 
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
 
       {[
         {
@@ -535,10 +470,10 @@ useEffect(() => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
           viewport={{ once: true }}
-          className="bg-white/5 border border-white/10 rounded-[30px] p-8 text-center backdrop-blur-xl hover:border-cyan-400/30 transition-all duration-500"
+          className="bg-white/5 border border-white/10 rounded-[30px] p-8 text-center backdrop-blur-md hover:border-orange-400/30 transition-all duration-500"
         >
 
-          <h3 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
+          <h3 className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mb-4">
 
             {item.number}
 
@@ -567,16 +502,16 @@ useEffect(() => {
 
       <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 rounded-full px-5 py-3 text-sm mb-6">
 
-        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+        <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></div>
 
         Trusted Growth Systems
 
       </div>
 
-      <h2 className="text-4xl md:text-6xl font-bold mb-6">
+      <h2 className="text-4xl sm:text-5xl md:text-4xl sm:text-5xl md:text-6xl font-bold">
 
         Built For
-        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
           {" "}Scalable Growth
         </span>
 
@@ -591,7 +526,7 @@ useEffect(() => {
 
     </div>
 
-    <div className="flex flex-col sm:flex-row gap-6 -mt-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-2">
 
       {[
         "Performance Marketing",
@@ -603,10 +538,10 @@ useEffect(() => {
         <motion.div
           key={index}
           whileHover={{ y: -6 }}
-          className="bg-white/5 border border-white/10 rounded-[24px] p-8 backdrop-blur-xl hover:border-cyan-400/30 hover:bg-white/[0.08] transition-all duration-500"
+          className="bg-white/5 border border-white/10 rounded-[24px] p-8 backdrop-blur-md hover:border-orange-400/30 hover:bg-white/[0.08] transition-all duration-500"
         >
 
-          <div className="text-cyan-400 text-lg font-semibold mb-3">
+          <div className="text-orange-400 text-lg font-semibold mb-3">
             0{index + 1}
           </div>
 
@@ -627,10 +562,10 @@ useEffect(() => {
 
 <section
   id="case-studies"
-  className="py-32 px-6 border-t border-white/5 overflow-hidden relative"
+  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5 overflow-hidden relative"
 >
 
-  <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/10 blur-[120px] rounded-full"></div>
+  <div className="absolute top-20 left-20 w-72 h-72 bg-orange-500/10 blur-[120px] rounded-full"></div>
 
   <div className="max-w-7xl mx-auto relative z-10">
 
@@ -638,7 +573,7 @@ useEffect(() => {
 
       <div className="inline-flex items-center gap-3 border border-white/10 bg-white/5 rounded-full px-5 py-3 text-sm mb-8">
 
-        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+        <div className="w-2 h-2 rounded-full bg-orange-400"></div>
 
         Featured Case Studies
 
@@ -647,7 +582,7 @@ useEffect(() => {
       <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-8">
 
         Real Results.
-        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
           {" "}Real Growth.
         </span>
 
@@ -680,18 +615,18 @@ useEffect(() => {
         <motion.div
           key={index}
           whileHover={{ y: -10 }}
-          className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-2xl p-10 hover:border-cyan-400/30 transition-all duration-500"
+          className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-md p-10 hover:border-orange-400/30 transition-all duration-500"
         >
 
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-br from-orange-500/10 to-orange-600/10"></div>
 
           <div className="relative z-10">
 
             <div className="flex items-center justify-between mb-16">
 
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-600 shadow-[0_0_40px_rgba(0,170,255,0.3)]"></div>
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-orange-400 to-orange-600 shadow-[0_0_40px_rgba(249,115,22,0.3)]"></div>
 
-              <div className="flex items-center gap-2 text-cyan-400">
+              <div className="flex items-center gap-2 text-orange-400">
 
                 View Project
 
@@ -721,7 +656,7 @@ useEffect(() => {
                   Growth
                 </p>
 
-                <h4 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                <h4 className="text-6xl font-bold bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
 
                   {item.growth}
 
@@ -729,7 +664,7 @@ useEffect(() => {
 
               </div>
 
-              <button className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-cyan-500/10 transition-all duration-300">
+              <button className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-orange-500/10 transition-all duration-300">
 
                 <ArrowUpRight />
 
@@ -753,21 +688,21 @@ useEffect(() => {
 
 <section
   id="contact"
-  className="py-32 px-6 border-t border-white/5"
+  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
   <div className="max-w-5xl mx-auto text-center">
 
-    <div className="border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-2xl rounded-[40px] p-10 md:p-16 relative overflow-hidden">
+    <div className="border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md rounded-[40px] p-10 md:p-16 relative overflow-hidden">
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full"></div>
 
       <div className="relative z-10">
 
         <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-8">
 
           Ready To Scale
-          <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
             {" "}Your Brand?
           </span>
 
@@ -780,7 +715,7 @@ useEffect(() => {
 
         </p>
 
-        <button className="premium-glow bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(0,170,255,0.35)] transition-all duration-300">
+        <button className="premium-glow bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-full font-semibold hover:scale-105 hover:shadow-[0_0_50px_rgba(249,115,22,0.35)] transition-all duration-300">
 
           Start Your Growth Journey
 
@@ -795,20 +730,26 @@ useEffect(() => {
 </section>
       {/* FOOTER */}
 
-<footer className="relative border-t border-white/10 px-6 py-20 overflow-hidden">
+<footer className="relative border-t border-white/10 px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
 
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#0ea5e910,transparent_60%)]"></div>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#f9731610,transparent_60%)]"></div>
 
   <div className="max-w-7xl mx-auto relative z-10">
 
-    <div className="grid lg:grid-cols-4 gap-16">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
 
       {/* BRAND */}
 
       <div>
 
         <div className="text-3xl font-bold tracking-tight mb-6">
-          Leady<span className="text-cyan-400">nox</span>
+          <Image
+  src="/logo.png"
+  alt="Leadynox Media"
+  width={170}
+  height={55}
+  className="w-[140px] h-auto object-contain"
+/>
         </div>
 
         <p className="text-white/50 leading-relaxed mb-8">
@@ -820,7 +761,7 @@ useEffect(() => {
 
           <a
             href="#"
-            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-orange-400/40 hover:bg-orange-500/10 transition-all duration-300"
           >
             <div className="text-sm font-bold">
               IG
@@ -829,14 +770,14 @@ useEffect(() => {
 
           <a
             href="#"
-            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-orange-400/40 hover:bg-orange-500/10 transition-all duration-300"
           >
             in
           </a>
 
           <a
             href="mailto:info@leadynoxmedia.com"
-            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-cyan-400/40 hover:bg-cyan-500/10 transition-all duration-300"
+            className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:border-orange-400/40 hover:bg-orange-500/10 transition-all duration-300"
           >
             <Mail size={18} />
           </a>
@@ -857,28 +798,28 @@ useEffect(() => {
 
           <a
             href="#home"
-            className="hover:text-cyan-400 transition-all duration-300"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Home
           </a>
 
           <a
             href="#services"
-            className="hover:text-cyan-400 transition-all duration-300"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Services
           </a>
 
           <a
             href="#case-studies"
-            className="hover:text-cyan-400 transition-all duration-300"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             About
           </a>
 
           <a
             href="#contact"
-            className="hover:text-cyan-400 transition-all duration-300"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Contact
           </a>
