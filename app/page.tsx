@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react"; 
 import Image from "next/image";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import {
   ArrowRight,
@@ -187,6 +183,32 @@ useEffect(() => {
       {/* NOISE */}
       <div className="noise"></div>
 
+{/* FLOATING SOCIALS */}
+
+<div className="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-4">
+
+  <a
+    href="#"
+    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/60 hover:text-orange-400 hover:border-orange-400/30 transition-all duration-300"
+  >
+    IG
+  </a>
+
+  <a
+    href="#"
+    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/60 hover:text-orange-400 hover:border-orange-400/30 transition-all duration-300"
+  >
+    in
+  </a>
+
+  <a
+    href="mailto:info@leadynoxmedia.com"
+    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/60 hover:text-orange-400 hover:border-orange-400/30 transition-all duration-300"
+  >
+    <Mail size={16} />
+  </a>
+
+</div>
   
       {/* NAVBAR */}
       <header
@@ -486,7 +508,7 @@ useEffect(() => {
       {/* SERVICES */}
       <section
   id="services"
-  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
+  className="section-divider py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
         <div className="max-w-7xl mx-auto">
@@ -578,7 +600,7 @@ useEffect(() => {
 
 <section
   id="stats"
-  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
+  className="section-divider py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
   <div className="max-w-7xl mx-auto">
@@ -610,7 +632,7 @@ useEffect(() => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
           viewport={{ once: true }}
-          className="bg-white/5 border border-white/10 rounded-[30px] p-8 text-center backdrop-blur-md hover:border-orange-400/30 transition-all duration-500"
+          className="group bg-white/5 border border-white/10 rounded-[30px] p-8 text-center backdrop-blur-md hover:border-orange-400/30 hover:-translate-y-3 hover:bg-white/[0.07] transition-all duration-500"
         >
 
           <h3 className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mb-4">
@@ -838,7 +860,7 @@ useEffect(() => {
 
 <section
   id="contact"
-  className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
+  className="section-divider py-20 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5"
 >
 
   <div className="max-w-5xl mx-auto text-center">
@@ -892,15 +914,23 @@ useEffect(() => {
 
       <div>
 
-        <div className="text-3xl font-bold tracking-tight mb-6">
-          <Image
-  src="/logo.png"
-  alt="Leadynox Media"
-  width={170}
-  height={55}
-  className="w-[140px] h-auto object-contain"
-/>
-        </div>
+        <div className="mb-6 leading-none">
+
+  <h3 className="text-[28px] font-extrabold tracking-tight">
+
+    <span className="text-orange-500">Leady</span>
+    <span className="text-white">Nox</span>
+    <span className="text-orange-500"> Media</span>
+
+  </h3>
+
+  <p className="text-white/40 text-[8px] tracking-[0.35em] uppercase mt-2">
+
+    PERFORMANCE MARKETING AGENCY
+
+  </p>
+
+</div>
 
         <p className="text-white/50 leading-relaxed mb-8">
           Performance-focused digital systems designed to help modern brands
@@ -1041,7 +1071,17 @@ useEffect(() => {
 
 </footer>
       
+{/* MOBILE STICKY CTA */}
 
+<div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[92%] md:hidden">
+
+  <button className="w-full premium-glow bg-gradient-to-r from-orange-500 to-orange-600 rounded-full py-4 font-semibold text-white shadow-[0_0_40px_rgba(249,115,22,0.25)] backdrop-blur-md border border-orange-400/20">
+
+    Book A Strategy Call
+
+  </button>
+
+</div>
               </main>
 
   </>

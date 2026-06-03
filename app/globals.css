@@ -339,14 +339,10 @@ html {
   .hero-team-image {
     width: 240px;
     opacity: 0.95;
-
     transform: none !important;
-
     margin-inline: auto;
-
     display: block;
   }
-@media (max-width: 768px) {
 
   #home {
     padding-bottom: 60px;
@@ -356,7 +352,6 @@ html {
     gap: 10px;
   }
 
-}
 }
 @media (max-width: 768px) {
 
